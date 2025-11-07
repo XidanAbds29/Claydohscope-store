@@ -20,7 +20,7 @@ export default function Header({
         <Link href="/" className={styles.brand}>
           <div className={styles.logo} aria-hidden>
             <img
-              src="/logo.png"
+              src="/src/logo.png"
               alt="Claydohscope logo"
               className={styles.logoImage}
               width={48}
