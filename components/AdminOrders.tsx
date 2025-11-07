@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
-import styles from './admin-orders.module.css';
+import styles from "./admin-orders.module.css";
 
 interface OrderItem {
   id: string;
@@ -42,14 +42,16 @@ export default function AdminOrders() {
     try {
       const session = await supabase.auth.getSession();
       const token = (session as any)?.data?.session?.access_token;
-      if (!token) throw new Error('Not authenticated');
+      if (!token) throw new Error("Not authenticated");
 
-      const res = await fetch('/api/admin/orders', { headers: { Authorization: `Bearer ${token}` } });
+      const res = await fetch("/api/admin/orders", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       const json = await res.json();
       if (!res.ok) throw new Error(json?.error || res.statusText);
       setOrders((json?.orders as Order[]) || []);
     } catch (err: any) {
-      setError(err?.message || 'Network error');
+      setError(err?.message || "Network error");
     } finally {
       setLoading(false);
     }
@@ -59,18 +61,21 @@ export default function AdminOrders() {
     try {
       const session = await supabase.auth.getSession();
       const token = (session as any)?.data?.session?.access_token;
-      if (!token) throw new Error('Not authenticated');
+      if (!token) throw new Error("Not authenticated");
 
       const res = await fetch(`/api/admin/orders/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ status })
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ status }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json?.error || res.statusText);
       fetchOrders();
     } catch (err: any) {
-      setError(err?.message || 'Network error');
+      setError(err?.message || "Network error");
     }
   }
 
@@ -115,7 +120,9 @@ export default function AdminOrders() {
               </div>
               <div className={styles.orderMetaItem}>
                 <span>Date:</span>
-                <span>{new Date(order.created_at || '').toLocaleDateString()}</span>
+                <span>
+                  {new Date(order.created_at || "").toLocaleDateString()}
+                </span>
               </div>
               <div className={styles.orderMetaItem}>
                 <span>bKash TrxID:</span>
@@ -142,16 +149,16 @@ export default function AdminOrders() {
                         </div>
                       </div>
                     </div>
-                    <div className={styles.itemQuantity}>
-                      x{item.quantity}
-                    </div>
+                    <div className={styles.itemQuantity}>x{item.quantity}</div>
                   </div>
                 ))}
               </div>
 
               <div className={styles.orderTotal}>
                 <span className={styles.totalLabel}>Total:</span>
-                <span className={styles.totalAmount}>৳{order.order_details.total.toFixed(2)}</span>
+                <span className={styles.totalAmount}>
+                  ৳{order.order_details.total.toFixed(2)}
+                </span>
               </div>
             </div>
 

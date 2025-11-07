@@ -21,7 +21,11 @@ export default function ProductCard({
   const formatPrice = (v: number) => {
     try {
       // Use Intl to format local currency; fallback to BDT symbol if not available
-      return new Intl.NumberFormat(undefined, { style: 'currency', currency: 'BDT', maximumFractionDigits: 0 }).format(v);
+      return new Intl.NumberFormat(undefined, {
+        style: "currency",
+        currency: "BDT",
+        maximumFractionDigits: 0,
+      }).format(v);
     } catch (e) {
       return `৳${v}`;
     }
@@ -36,7 +40,9 @@ export default function ProductCard({
           className={styles.image}
           loading="lazy"
         />
-        <div className={styles.priceBadge}><data value={price}>{formatPrice(price)}</data></div>
+        <div className={styles.priceBadge}>
+          <data value={price}>{formatPrice(price)}</data>
+        </div>
       </div>
 
       <div className={styles.content}>
@@ -44,7 +50,9 @@ export default function ProductCard({
         <p className={styles.description}>{description}</p>
 
         <div className={styles.footer}>
-          <div className={styles.price}><data value={price}>{formatPrice(price)}</data></div>
+          <div className={styles.price}>
+            <data value={price}>{formatPrice(price)}</data>
+          </div>
           <button
             onClick={() => onAddToCart(product)}
             className="btn btn--primary"

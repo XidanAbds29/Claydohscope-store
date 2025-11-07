@@ -48,14 +48,37 @@ export default function AdminLogin({ onSuccess }: { onSuccess: () => void }) {
     <form onSubmit={submit} style={{ maxWidth: 420, display: "grid", gap: 12 }}>
       <label>
         Email
-        <input value={email} onChange={(e) => setEmail(e.target.value)} required style={{ width: "100%", padding: 8, borderRadius: 8, border: "1px solid #eee" }} />
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          style={{
+            width: "100%",
+            padding: 8,
+            borderRadius: 8,
+            border: "1px solid #eee",
+          }}
+        />
       </label>
       <label>
         Password
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required style={{ width: "100%", padding: 8, borderRadius: 8, border: "1px solid #eee" }} />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          style={{
+            width: "100%",
+            padding: 8,
+            borderRadius: 8,
+            border: "1px solid #eee",
+          }}
+        />
       </label>
       <div>
-        <button type="submit" className="btn btn--primary" disabled={loading}>{loading ? "Signing in…" : "Sign in"}</button>
+        <button type="submit" className="btn btn--primary" disabled={loading}>
+          {loading ? "Signing in…" : "Sign in"}
+        </button>
       </div>
       {error && <div style={{ color: "red" }}>{error}</div>}
     </form>

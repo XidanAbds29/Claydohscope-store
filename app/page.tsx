@@ -2,6 +2,7 @@
 
 import { supabase } from "../lib/supabaseClient";
 import { useEffect, useState } from "react";
+import { useCart } from "../components/CartProvider";
 import styles from "./page.module.css"; // This is our stylesheet
 
 // Define the type for a Product
@@ -16,7 +17,7 @@ interface Product {
 export default function Home() {
   // --- Component State ---
   const [products, setProducts] = useState<Product[]>([]);
-  const [cart, setCart] = useState<Product[]>([]);
+  const { items: cart, addToCart, cartTotal, clearCart } = useCart();
 
   // --- Form State ---
   const [showCheckout, setShowCheckout] = useState(false);
@@ -47,15 +48,15 @@ export default function Home() {
   }, []);
 
   // --- Cart Functions ---
-  const addToCart = (product: Product) => {
-    setCart([...cart, product]);
-  };
-
-  const cartTotal = cart.reduce((total, product) => total + product.price, 0);
+  // addToCart provided by CartProvider (increments quantity if exists)
 
   const formatPrice = (v: number) => {
     try {
-      return new Intl.NumberFormat(undefined, { style: 'currency', currency: 'BDT', maximumFractionDigits: 0 }).format(v);
+      return new Intl.NumberFormat(undefined, {
+        style: "currency",
+        currency: "BDT",
+        maximumFractionDigits: 0,
+      }).format(v);
     } catch (e) {
       return `৳${v}`;
     }
@@ -72,6 +73,7 @@ export default function Home() {
         id: item.id,
         name: item.name,
         price: item.price,
+        quantity: item.quantity,
       })),
       total: cartTotal,
     };
@@ -90,8 +92,8 @@ export default function Home() {
     if (error) {
       alert("Error placing order: " + error.message);
     } else {
-      setIsSuccess(true);
-      setCart([]);
+  setIsSuccess(true);
+  clearCart();
       setCustomerName("");
       setCustomerPhone("");
       setCustomerAddress("");
@@ -110,14 +112,15 @@ export default function Home() {
         </h1>
         <p>Your one-stop shop for cute clay creations ✨</p>
       </header>
-
       {/* ===== CART BAR ===== */}
       <div className={styles.cartBar}>
         <div>
           <h3>Your Cart</h3>
           <p>
             {cart.length} {cart.length === 1 ? "item" : "items"}. Total:{" "}
-            <strong><data value={cartTotal}>{formatPrice(cartTotal)}</data></strong>
+            <strong>
+              <data value={cartTotal}>{formatPrice(cartTotal)}</data>
+            </strong>
           </p>
         </div>
         <button
@@ -162,7 +165,9 @@ export default function Home() {
                 </li>
                 <li>
                   Enter the total amount:{" "}
-                  <strong style={{ color: "#8B5E3C" }}><data value={cartTotal}>{formatPrice(cartTotal)}</data></strong>
+                  <strong style={{ color: "#8B5E3C" }}>
+                    <data value={cartTotal}>{formatPrice(cartTotal)}</data>
+                  </strong>
                 </li>
                 <li>
                   Copy the <strong>Transaction ID (TrxID)</strong> and paste it
@@ -249,7 +254,11 @@ export default function Home() {
           products.map((product) => (
             <div key={product.id} className={styles.productCard}>
               <div className={styles.productImageContainer}>
-                <span className={styles.priceBadge}><data value={product.price}>{formatPrice(product.price)}</data></span>
+                <span className={styles.priceBadge}>
+                  <data value={product.price}>
+                    {formatPrice(product.price)}
+                  </data>
+                </span>
                 <img
                   src={product.image || "https://via.placeholder.com/400"}
                   alt={product.name}
@@ -262,7 +271,11 @@ export default function Home() {
                 <p>{product.description}</p>
 
                 <div className={styles.productFooter}>
-                  <p className={styles.price}><data value={product.price}>{formatPrice(product.price)}</data></p>
+                  <p className={styles.price}>
+                    <data value={product.price}>
+                      {formatPrice(product.price)}
+                    </data>
+                  </p>
                   <button
                     onClick={() => addToCart(product)}
                     className={`btn-primary ${styles.cartButton}`}

@@ -53,6 +53,7 @@ You'll need to set the following environment variables in your Vercel project:
 ### Deployment Steps
 
 1. **Push your code to GitHub**
+
    ```bash
    git add .
    git commit -m "Prepare for deployment"
@@ -60,6 +61,7 @@ You'll need to set the following environment variables in your Vercel project:
    ```
 
 2. **Deploy to Vercel**
+
    - Go to [Vercel](https://vercel.com)
    - Click "New Project"
    - Import your GitHub repository
@@ -75,4 +77,7 @@ You'll need to set the following environment variables in your Vercel project:
    - Test product management
    - Verify order processing
    - Check image uploads
+
+```
+
 ```

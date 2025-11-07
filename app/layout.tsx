@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "../components/Header";
+import CartProvider from "../components/CartProvider";
 
 export const metadata: Metadata = {
   title: "Claydohscope",
@@ -15,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        <main className="container">{children}</main>
+        <CartProvider>
+          <Header />
+          <main className="container">{children}</main>
+        </CartProvider>
       </body>
     </html>
   );
