@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { CartItem as CartItemType } from "./Cart";
-import { playAdd, playRemove } from "./sound";
+import { playAdd, playRemove, startMusic, resumeIfNeeded, isMusicPlaying } from "./sound";
 
 interface Product {
   id: number;
@@ -62,6 +62,9 @@ export default function CartProvider({ children }: { children: React.ReactNode }
     setItems((prev) => {
       const existing = prev.find((p) => p.id === product.id);
       if (existing) {
+        // resume audio context if suspended (user gesture)
+        resumeIfNeeded();
+        // play add sound
         playAdd();
         return prev.map((p) => (p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p));
       }
@@ -74,7 +77,13 @@ export default function CartProvider({ children }: { children: React.ReactNode }
       };
       // show toast when added first time
       showToast(`${product.name} added to cart`);
+      // resume audio context if needed and start gentle music on first interaction
+      resumeIfNeeded();
       playAdd();
+      if (!isMusicPlaying()) {
+        // start background music after a small delay to avoid autoplay blocks
+        try { startMusic(); } catch (e) {}
+      }
       return [...prev, next];
     });
     // if item exists, also show toast (handled above)
@@ -104,6 +113,7 @@ export default function CartProvider({ children }: { children: React.ReactNode }
     setItems((prev) => {
       const removed = prev.find((p) => p.id === id);
       if (removed) {
+        resumeIfNeeded();
         playRemove();
         showToast(`${removed.name} removed from cart`);
       }
