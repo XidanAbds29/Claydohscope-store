@@ -1,0 +1,311 @@
+/* In: app/page.module.css */
+/* ----- NEW UPGRADED STYLES ----- */
+
+.main {
+  width: 100%;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  font-family: "Quicksand", sans-serif;
+  background-color: #FFF9F2; /* cream-100 */
+  color: #8B5E3C; /* brand-brown */
+  
+  /* Subtle pattern background */
+  background-image: radial-gradient(#FAD1D1 0.5px, transparent 0.5px),
+    radial-gradient(#FAD1D1 0.5px, #FFF9F2 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.header h1 {
+  font-size: 3.75rem; /* 6xl */
+  font-weight: 700;
+  text-shadow: 2px 2px #FCEFE0; /* cream-200 */
+}
+
+.header h1 span {
+  color: #FAD1D1; /* brand-pink */
+}
+
+.header p {
+  font-size: 1.25rem; /* xl */
+  opacity: 0.7;
+  margin-top: 1rem;
+}
+
+.cartBar {
+  max-width: 80rem; /* container mx-auto */
+  margin: 0 auto 3rem auto;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 1.25rem; /* rounded-2xl */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cartBar h3 {
+  font-size: 1.5rem; /* 2xl */
+  font-weight: 700;
+}
+
+.cartButton {
+  background-color: #FAD1D1; /* brand-pink */
+  color: #8B5E3C; /* brand-brown */
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border-radius: 99px; /* rounded-full */
+  box-shadow: 0 4px 12px rgba(250, 209, 209, 0.5);
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.cartButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(250, 209, 209, 0.7);
+}
+
+.cartButton:disabled {
+  background-color: #e0e0e0;
+  box-shadow: none;
+  transform: none;
+  cursor: not-allowed;
+}
+
+.productGrid {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .productGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.productCard {
+  background-color: #ffffff;
+  border-radius: 1.5rem; /* rounded-3xl */
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.productCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.productImageContainer {
+  overflow: hidden; /* This keeps the zoom contained */
+  position: relative; /* for badges */
+}
+
+.productImage {
+  width: 100%;
+  height: 18rem; /* h-72 */
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.productCard:hover .productImage {
+  transform: scale(1.1);
+}
+
+.priceBadge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background-color: var(--brand-pink);
+  color: var(--brand-brown);
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.75rem;
+  font-weight: 800;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 16px rgba(250, 209, 209, 0.5);
+}
+
+.productInfo {
+  padding: 1.5rem;
+}
+
+.productInfo h2 {
+  font-size: 1.875rem; /* 3xl */
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.productInfo p {
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+  height: 4rem; /* h-16 */
+}
+
+.productFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.price {
+  font-size: 2.25rem; /* 4xl */
+  font-weight: 800;
+}
+
+/* =========================================
+NEW! CHECKOUT MODAL STYLES
+=========================================
+*/
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  padding: 1rem;
+}
+
+.modalContent {
+  background-color: #ffffff;
+  border-radius: 1.5rem; /* rounded-3xl */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 32rem; /* max-w-lg */
+  width: 100%;
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #aaa;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.closeButton:hover {
+  color: #333;
+}
+
+.modalHeader {
+  font-size: 1.875rem; /* 3xl */
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.instructions {
+  background-color: #FFF9F2; /* cream-100 */
+  padding: 1.25rem;
+  border-radius: 1rem; /* rounded-2xl */
+  border: 1px solid #FAD1D1; /* brand-pink */
+  margin-bottom: 1.5rem;
+}
+
+.instructions h3 {
+  font-size: 1.125rem; /* lg */
+  font-weight: 700;
+  color: #FAD1D1; /* brand-pink */
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.instructionsList {
+  list-style: decimal;
+  list-style-position: inside;
+  padding-left: 0;
+  margin: 0;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formLabel {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem; /* rounded-xl */
+  border: 1px solid #e0e0e0;
+  font-size: 1rem;
+  font-family: "Quicksand", sans-serif;
+  transition: all 0.3s ease;
+  box-sizing: border-box; /* Fixes padding issue */
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #FAD1D1; /* brand-pink */
+  box-shadow: 0 0 0 3px rgba(250, 209, 209, 0.5);
+}
+
+.submitButton {
+  background-color: #4ade80; /* green-500 */
+  color: white;
+  font-weight: 700;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem; /* rounded-xl */
+  border: none;
+  cursor: pointer;
+  font-size: 1.125rem;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #22c55e; /* green-600 */
+}
+
+.submitButton:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+/* =========================================
+NEW! SUCCESS MESSAGE
+=========================================
+*/
+
+.successMessage {
+  padding: 1rem;
+  background-color: #d1fae5; /* green-100 */
+  border: 1px solid #10b981; /* green-500 */
+  color: #047857; /* green-700 */
+  border-radius: 0.75rem;
+  text-align: center;
+  margin: 1.5rem auto 0 auto;
+  max-width: 80rem;
+}

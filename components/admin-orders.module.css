@@ -1,0 +1,131 @@
+.orderList {
+  display: grid;
+  gap: 1rem;
+}
+
+.orderCard {
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+
+.orderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.customerInfo h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.customerMeta {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+.statusSelect {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  font-size: 0.9rem;
+  background: white;
+  cursor: pointer;
+}
+
+.statusSelect option {
+  padding: 0.5rem;
+}
+
+.orderMeta {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: var(--color-background);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin-bottom: 1rem;
+}
+
+.orderMetaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.orderItems {
+  margin-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+}
+
+.itemsList {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--color-background);
+  border-radius: 8px;
+}
+
+.itemInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.itemImage {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.itemName {
+  font-weight: 500;
+}
+
+.itemPrice {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+.itemQuantity {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  background: var(--color-surface);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+}
+
+.orderTotal {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 500;
+}
+
+.totalLabel {
+  color: var(--color-text-light);
+}
+
+.totalAmount {
+  font-size: 1.1rem;
+  color: var(--color-primary);
+}

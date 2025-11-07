@@ -1,0 +1,167 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* Modern CSS Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Properties - Design System */
+:root {
+  /* Colors - Muted Earth theme (sage / peach / cream) */
+  --color-primary: #A7C796;        /* Sage green */
+  --color-primary-light: #CFE8C8;  /* Pale sage */
+  --color-secondary: #F7E9DF;      /* Soft cream */
+  --color-accent: #F4D6B0;         /* Soft peach */
+  --color-background: #FBF9F6;     /* Off-white cream */
+  --color-surface: #FFFFFF;        /* Card surface */
+  --color-text: #4A3F35;           /* Warm brown text */
+  --color-text-light: #7D6F62;     /* Muted brown for secondary text */
+  
+  /* Typography */
+  --font-primary: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
+  --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+  --font-size-lg: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
+  --font-size-xl: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
+  --font-size-2xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
+  --font-size-3xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+  
+  /* Spacing */
+  --space-xs: clamp(0.75rem, 0.69vw + 0.6rem, 1.13rem);
+  --space-sm: clamp(1rem, 0.69vw + 0.85rem, 1.38rem);
+  --space-md: clamp(1.5rem, 1.38vw + 1.2rem, 2.25rem);
+  --space-lg: clamp(2rem, 2.08vw + 1.45rem, 3rem);
+  --space-xl: clamp(3rem, 3.47vw + 2.03rem, 4.5rem);
+  
+  /* Effects */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-full: 9999px;
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Modern Container Pattern */
+.container {
+  width: min(100% - 2rem, 80rem);
+  margin-inline: auto;
+}
+
+/* Modern Button Reset */
+button {
+  font: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* Modern Link Reset */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Modern Image Handling */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Utility Classes */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+  padding: var(--space-sm) 0;
+}
+
+.header h2 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Status Badge Colors */
+.status-pending {
+  color: #F59E0B;
+  background-color: #FEF3C7;
+}
+
+.status-confirmed {
+  color: #2563EB;
+  background-color: #DBEAFE;
+}
+
+.status-shipped {
+  color: #7C3AED;
+  background-color: #EDE9FE;
+}
+
+.status-delivered {
+  color: #059669;
+  background-color: #D1FAE5;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn--primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn--primary:hover {
+  background-color: var(--color-primary-light);
+  transform: translateY(-1px);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
