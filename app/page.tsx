@@ -214,7 +214,7 @@ export default function Home() {
                 />
               </div>
 
-              <div>
+              <div className={styles.formActions}>
                 <button
                   type="submit"
                   disabled={isLoading}
@@ -223,6 +223,13 @@ export default function Home() {
                   {isLoading
                     ? "Placing Order..."
                     : `Place Order (${formatPrice(cartTotal)})`}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => closeCheckout()}
+                  className={styles.cancelButton}
+                >
+                  Cancel
                 </button>
               </div>
             </form>

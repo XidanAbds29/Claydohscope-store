@@ -194,6 +194,9 @@ NEW! CHECKOUT MODAL STYLES
   max-width: 32rem; /* max-w-lg */
   width: 100%;
   position: relative;
+  /* Limit height to 75% of viewport to avoid overly tall modal on laptops */
+  max-height: 75vh;
+  overflow: auto;
 }
 
 .closeButton {
@@ -292,6 +295,28 @@ NEW! CHECKOUT MODAL STYLES
 .submitButton:disabled {
   background-color: #e0e0e0;
   cursor: not-allowed;
+}
+
+/* Form actions layout: place submit and cancel side by side */
+.formActions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.cancelButton {
+  background: transparent;
+  border: 1px solid #e5e7eb; /* gray-200 */
+  color: #8b5e3c;
+  padding: 0.9rem 1.2rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.cancelButton:hover {
+  background-color: #fff7f3;
 }
 
 /* =========================================
