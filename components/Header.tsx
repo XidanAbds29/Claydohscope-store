@@ -19,37 +19,14 @@ export default function Header({
       <div className={`container ${styles.headerInner}`}>
         <Link href="/" className={styles.brand}>
           <div className={styles.logo} aria-hidden>
-            <svg
-              className={styles.logoIcon}
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 3L19 7.5L12 12L5 7.5L12 3Z"
-                fill="currentColor"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M5 12.5L12 17L19 12.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M5 17.5L12 22L19 17.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                opacity="0.5"
-              />
-            </svg>
+            <img
+              src="/logo.png"
+              alt="Claydohscope logo"
+              className={styles.logoImage}
+              width={48}
+              height={48}
+              loading="eager"
+            />
           </div>
 
           <div className={styles.brandInfo}>
