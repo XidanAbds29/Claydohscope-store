@@ -12,7 +12,7 @@ export default function Header({
   cartItemCount?: number;
 }) {
   const [showCart, setShowCart] = useState(false);
-  const { items: cartItems, updateQuantity, clearCart } = useCart();
+  const { items: cartItems, updateQuantity, clearCart, openCheckout } = useCart();
 
   return (
     <header className={styles.header}>
@@ -107,10 +107,8 @@ export default function Header({
           onClose={() => setShowCart(false)}
           onUpdateQuantity={(id, quantity) => updateQuantity(id, quantity)}
           onCheckout={() => {
-            // TODO: Implement checkout flow (place order)
-            console.log("Checkout:", cartItems);
-            // Clear cart after checkout for now
-            clearCart();
+            // Open the global checkout modal and close the cart overlay
+            openCheckout();
             setShowCart(false);
           }}
         />

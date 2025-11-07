@@ -3,6 +3,7 @@
 import { supabase } from "../lib/supabaseClient";
 import { useEffect, useState } from "react";
 import { useCart } from "../components/CartProvider";
+import { playSuccess, playError } from "../components/sound";
 import styles from "./page.module.css"; // This is our stylesheet
 
 // Define the type for a Product
@@ -17,10 +18,9 @@ interface Product {
 export default function Home() {
   // --- Component State ---
   const [products, setProducts] = useState<Product[]>([]);
-  const { items: cart, addToCart, cartTotal, clearCart } = useCart();
+  const { items: cart, addToCart, cartTotal, clearCart, showCheckout, closeCheckout } = useCart();
 
   // --- Form State ---
-  const [showCheckout, setShowCheckout] = useState(false);
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [customerAddress, setCustomerAddress] = useState("");
@@ -90,15 +90,17 @@ export default function Home() {
     setIsLoading(false);
 
     if (error) {
+      playError();
       alert("Error placing order: " + error.message);
     } else {
   setIsSuccess(true);
   clearCart();
-      setCustomerName("");
-      setCustomerPhone("");
-      setCustomerAddress("");
-      setBkashTrxID("");
-      setShowCheckout(false);
+  setCustomerName("");
+  setCustomerPhone("");
+  setCustomerAddress("");
+  setBkashTrxID("");
+  closeCheckout();
+      playSuccess();
     }
   };
 
@@ -112,25 +114,7 @@ export default function Home() {
         </h1>
         <p>Your one-stop shop for cute clay creations ✨</p>
       </header>
-      {/* ===== CART BAR ===== */}
-      <div className={styles.cartBar}>
-        <div>
-          <h3>Your Cart</h3>
-          <p>
-            {cart.length} {cart.length === 1 ? "item" : "items"}. Total:{" "}
-            <strong>
-              <data value={cartTotal}>{formatPrice(cartTotal)}</data>
-            </strong>
-          </p>
-        </div>
-        <button
-          onClick={() => setShowCheckout(true)}
-          disabled={cart.length === 0}
-          className={styles.cartButton}
-        >
-          Go to Checkout
-        </button>
-      </div>
+      {/* NOTE: Cart bar removed from home page; header cart is used for checkout */}
 
       {/* ===== SUCCESS MESSAGE ===== */}
       {isSuccess && (
@@ -145,7 +129,7 @@ export default function Home() {
         <div className={styles.modalOverlay}>
           <div className={styles.modalContent}>
             <button
-              onClick={() => setShowCheckout(false)}
+              onClick={() => closeCheckout()}
               className={styles.closeButton}
             >
               &times;

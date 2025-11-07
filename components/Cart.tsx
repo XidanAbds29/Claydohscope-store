@@ -74,24 +74,9 @@ export default function Cart({
                     </div>
                   </div>
                   <div className={styles.quantity}>
-                    <button
-                      onClick={() =>
-                        onUpdateQuantity(item.id, item.quantity - 1)
-                      }
-                      disabled={item.quantity <= 1}
-                      className={styles.quantityButton}
-                    >
-                      −
-                    </button>
+                    <button onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}>-</button>
                     <span className={styles.quantityText}>{item.quantity}</span>
-                    <button
-                      onClick={() =>
-                        onUpdateQuantity(item.id, item.quantity + 1)
-                      }
-                      className={styles.quantityButton}
-                    >
-                      +
-                    </button>
+                    <button onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}>+</button>
                   </div>
                   <button
                     onClick={() => onUpdateQuantity(item.id, 0)}
