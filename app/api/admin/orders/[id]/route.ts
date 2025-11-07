@@ -15,10 +15,15 @@ async function verifyAdmin(request: NextRequest) {
   return { ok: true, user: data.user }
 }
 
-export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
   const verify = await verifyAdmin(request)
   if (!verify.ok) return NextResponse.json({ error: verify.message }, { status: verify.status })
 
+  // Next.js typings may provide params as a Promise in some versions — await to normalize
+  const params = await context.params
   const { id } = params
   const body = await request.json().catch(() => ({}))
   const { status } = body
